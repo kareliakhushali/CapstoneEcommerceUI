@@ -1,0 +1,66 @@
+<div class="row m-2 text-light border border-1 border-secondary rounded bg-opacity-50 bg-dark">
+  <div class="col-sm-1 p-2">SR#</div>
+  <div class="col-sm-1 p-2">Name</div>
+  
+  <div class="col-sm-1 p-2">Action</div>
+  
+</div>
+<div class="row m-2 text-light border border-1 border-secondary rounded bg-success" *ngFor="let each of CategoryList let i=index">
+  <div class="col-sm-1 p-2">
+      {{i+1}}
+  </div>
+  <div class="col-sm-1 p-2">
+      {{each.catName}}
+  </div>
+  <!-- <div class="col-sm-1 p-2">
+      {{each.qty}}
+  </div>
+  <div class="col-sm-1 p-2">
+      {{each.rate}}
+  </div> -->
+ 
+  <div class="col-sm-2 p-1">
+      <input type="button" style="width: 75px"
+      class="btn border border-1 ms-2 text-light"
+      (click)="onEdit(each.id)"[routerLink]="['/editCategory']" value="Edit"/>
+      <input type="button" style="width: 75px"
+      class="btn border border-1 ms-2 text-light"
+      (click)="onDelete(each.id)" value="Delete"/>
+  </div>
+  
+  
+  
+</div>
+
+<!-- <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of CategoryList">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td><button (click)="editCategory(category)">Edit</button></td>
+        <td><button (click)="onDelete(category.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <form *ngIf="!isAdd" (submit)="updateCategory()">
+    <input type="hidden" name="id" [(ngModel)]="selectedCategory.id">
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="selectedCategory.name"><br>
+    <button type="submit">Update</button>
+  </form>
+  
+  <form *ngIf="isAdd" (submit)="addCategory()">
+    <label for="name">Name:</label>
+    <input type="text" name="name" [(ngModel)]="selectedCategory.name"><br>
+    <button type="submit">Add</button>
+  </form>
+   -->

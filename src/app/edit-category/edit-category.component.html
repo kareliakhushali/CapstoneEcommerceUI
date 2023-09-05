@@ -1,0 +1,41 @@
+<form [formGroup]="editCategory" (ngSubmit)="onSave()">
+
+    <div class="form-group">
+  
+      <label for="name" class="m-2">Category Name:</label>
+  
+      <input type="text" formControlName="Name" id="name" class="form-control m-2" placeholder="Enter category name">
+  
+      <div *ngIf="editCategory.get('Name').touched && editCategory.get('Name').errors">
+  
+        <div *ngIf="editCategory.get('Name').errors.required"class="text-danger">Name is required.</div>
+  
+        <div *ngIf="editCategory.controls.Name.errors?.nameInvalid && (editCategory.controls.Name.dirty || editCategory.controls.Name.touched)" class="text-danger">
+  
+          Name must start with a letter.
+  
+        </div>
+  
+        <div *ngIf="editCategory.get('Name').errors.minlength"class="text-danger">Name must be at least 2 characters.</div>
+  
+        <div *ngIf="editCategory.get('Name').errors.maxlength"class="text-danger">Name should not be greater than 20 characters.</div>
+  
+      </div>
+  
+    </div>
+  
+    
+  
+    <div class="mt-2">
+  
+          <button type="submit"  class="btn btn-primary m-2">Submit</button> &nbsp;
+  
+          <button type="reset" class="btn btn-secondary m-2">Reset</button>  &nbsp;
+  
+      
+  
+  </div>
+  
+  </form>
+  
+  

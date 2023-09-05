@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="add-product-form">
+   <h2>Add Product</h2>
+   <form [formGroup]="addProduct" (ngSubmit)="onSave()">
+     <div class="form-group">
+       <div class="row m-2"></div>
+       <label for="name">Product Name:</label>
+       <input type="text" formControlName="Name" id="name" class="form-control" placeholder="Enter product name">
+       <div *ngIf="addProduct.get('Name').touched && addProduct.get('Name').errors">
+         <div *ngIf="addProduct.get('Name').errors.required"class="text-danger">Name is required.</div>
+         <div *ngIf="addProduct.controls.Name.errors?.nameInvalid && (addProduct.controls.Name.dirty || addProduct.controls.Name.touched)" class="text-danger">
+           Name must start with a letter.
+         </div>
+         <div *ngIf="addProduct.get('Name').errors.minlength"class="text-danger">Name must be at least 2 characters.</div>
+         <div *ngIf="addProduct.get('Name').errors.maxlength"class="text-danger">Name should not be greater than 20 characters.</div>
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="qty">Quantity:</label>
+       <input type="number" formControlName="Qty" id="qty" class="form-control" placeholder="Enter quantity">
+       <div *ngIf="addProduct.get('Qty').touched && addProduct.get('Qty').errors">
+         <div *ngIf="addProduct.get('Qty').errors.required"class="text-danger">Quantity is required.</div>
+         <div *ngIf="addProduct.get('Qty').errors.min"class="text-danger">Quantity must be greater than 0.</div>
+         <div *ngIf="addProduct.get('Qty').errors.max"class="text-danger">Quantity must be less than 100000.</div>
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="rate">Rate:</label>
+       <input type="number" formControlName="Rate" id="rate" class="form-control" placeholder="Enter rate">
+       <div *ngIf="addProduct.get('Rate').touched && addProduct.get('Rate').errors">
+         <div *ngIf="addProduct.get('Rate').errors.required" class="text-danger">Rate is required.</div>
+         <div *ngIf="addProduct.get('Rate').errors.min"class="text-danger">Rate must be greater than 0.</div>
+         <div *ngIf="addProduct.get('Rate').errors.max"class="text-danger">Rate must be less than 10000000.</div>
+       </div>
+     </div>
+     <!-- <div class="form-group">
+       <label for="category">Category:</label>
+       <select formControlName="Category" id="catId" class="form-control" placeholder="category">
+         <option *ngFor="let category of CategoryList" [value]="category.ID">{{ category.CatName }}</option>
+       </select>
+       <div *ngIf="addProduct.get('Category').touched && addProduct.get('Category').errors">
+         <div *ngIf="addProduct.get('Category').errors.required" class="text-danger">Category is required.</div>
+         <div *ngIf="addProduct.get('Category').errors.min" class="text-danger">Category is required.</div>
+       </div>
+     </div> -->
+   
+     <div>
+       <label class="col-sm-1 col-form-label">IsActive</label>
+       <input type="checkbox" formControlName="IsActive"/>
+       <!-- <div *ngIf="addProduct.get('IsActive').invalid && (addProduct.get('IsActive')?.dirty || addProduct.get('IsActive').touched)">
+       </div> -->
+     </div>
+     
+       <div class="form-row">
+           <div class="form-group col-md-6">
+             <label for="Profile">Profile</label>
+             <input type="file" (change)="handleUpload($event)" class="form-control">  
+           </div>
+         </div>  
+     <div class="mt-2">
+           <button type="submit"  class="btn btn-primary ">Save</button> &nbsp;
+           <!-- <button type="reset" class="btn btn-secondary">Reset</button>  &nbsp; -->
+   </div>
+   </form>
+ </div>
+</div>
+
+
